@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>UK Map</title>
+    <style>
+        /*#status {*/
+        /*color: red; !*Change colour for the status message*!*/
+        /*font-size: 16pt;*/
+        /*}*/
+        /*#question {*/
+            /*font-size: 16pt;*/
+        /*}*/
+        /*#Region {*/
+            /*color: cornflowerblue;*/
+            /*font-size: 16pt;*/
+        /*}*/
+    </style>
+
+    <script>
+        var points = 0; //Total points
+        var question = 0; //Question number
+        window.onload = function () { //Do the following on startup
+            askQuestion();
+        };
+
+        function askQuestion() {
+            document.getElementById("nextButton").style.display = 'none'; //Hide the nextButton
+            document.getElementById("status").innerHTML = null;
+            switch (question) {
+                case 0:
+                    document.getElementById("question").innerHTML = "What region Brighton is located?";
+                    break;
+                case 1:
+                    document.getElementById("question").innerHTML = "Where is Lancaster located?";
+                    break;
+                case 2:
+                    document.getElementById("question").innerHTML = "Where is Nottingham located?";
+                    break;
+            }
+        }
+        function correctAnswer() {
+            document.getElementById("status").innerHTML = "Correct! You can proceed to the next question.";
+            document.getElementById("status").style.color = "green";
+            document.getElementById("nextButton").style.display = 'block';
+        }
+        function wrongAnswer() {
+            document.getElementById("status").innerHTML = "Wrong";
+            document.getElementById("status").style.color = "red";
+        }
+        function checkAnswer(region) {
+            if (question == 0 && region == "South East") {
+                correctAnswer();
+            } else if (question == 1 && region == "West Midlands") {
+                correctAnswer();
+            } else if (question == 2 && region == "East Midlands") {
+                document.getElementById("status").innerHTML = "Correct!";
+                document.getElementById("status").style.color = "green";
+            }
+            else {
+                wrongAnswer();
+            }
+        }
+        function nextQuestion() {
+            question++; //Go to the next question
+            askQuestion();
+        }
+        function showRegion(region) {
+            document.getElementById("Region").innerHTML = region;
+        }
+        function updatePoints() {
+//            document.getElementById("demo").innerHTML = "Paragraph changed.";
+            points = points + 5;
+            return points
+        }
+
+    </script>
+</head>
+
+<body>
+<div>
+    <div align="center" style="border:3px solid orange">
+        <h2>Region Quiz</h2>
+    </div>
+    <div align="left" style="float: left">
+        <img src="regions.png" usemap="#Regions"/> <!--585 x 800 map-->
+    </div>
+    <div align="center">
+        <h3 id="question"></h3>
+        <h1 id="Region" style="color: cornflowerblue;"></h1>
+        <h1 id="status"></h1>
+        <input type="button" id="nextButton" value="Next Question" onclick="nextQuestion()"/>
+        <form action="cities.html">
+            <input type="submit" value="Back to the map with cities" />
+        </form>
+    </div>
+</div>
+
+<map name="Regions">
+    <area shape="rect" coords="398,552,451,590" onmouseover="showRegion('Greater London')"
+          onclick="checkAnswer('Greater London')"
+          target="_blank" alt="1"/>
+    <area shape="rect" coords="314,496,412,671" onmouseover="showRegion('South East')"
+          onclick="checkAnswer('South East')" target="_blank" alt="2"/>
+    <area shape="rect" coords="54,599,317,702" onmouseover="showRegion('South West')"
+          onclick="checkAnswer('South West')" target="_blank" alt="3"/>
+    <area shape="circle" coords="267,445,65" onmouseover="showRegion('West Midlands')"
+          onclick="checkAnswer('West Midlands')" target="_blank" alt="4"/>
+    <area shape="rect" coords="184,132,272,380" onmouseover="showRegion('North West')"
+          onclick="checkAnswer('North West')" target="_blank" alt="5"/>
+    <area shape="rect" coords="246,31,330,189" onmouseover="showRegion('North East')"
+          onclick="checkAnswer('North East')" target="_blank" alt="6"/>
+    <area shape="circle" coords="350,261,75" onmouseover="showRegion('Yorkshire and the Humber')"
+          onclick="checkAnswer('Yorkshire and the Humber')" target="_blank"
+          alt="7"/>
+    <area shape="rect" coords="316,326,459,444" onmouseover="showRegion('East Midlands')"
+          onclick="checkAnswer('East Midlands')" target="_blank" alt="8"/>
+    <area shape="rect" coords="400,420,560,555" onmouseover="showRegion('East of England')"
+          onclick="checkAnswer('East of England')" target="_blank" alt="9"/>
+</map>
+
+</body>
+
+<!--<button onclick="window.alert(points)">Show the points</button>-->
+</html>

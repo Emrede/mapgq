@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>UK Map</title>
+    <script>
+        var points = 0;
+        function showRegion(region) {
+            document.getElementById("Region").innerHTML = region;
+        }
+        function updatePoints() {
+//            document.getElementById("demo").innerHTML = "Paragraph changed.";
+            points = points + 5;
+            return points
+        }
+    </script>
+</head>
+
+<body>
+
+<div>
+    <div align="center" style="border:3px solid green">
+        <h2>UK Regional Map</h2>
+    </div>
+    <div align="left" style="float: left">
+        <img src="cities_regionsd.png" usemap="#Regions"/></div>
+    <div align="center">
+        <h2 style="color: cornflowerblue" id="Region">No region is pointed. </h2>
+        <!--<button onclick="window.alert(points)">Show the points</button>-->
+        <form action="quiz.html">
+            <input type="submit" value="Go to the quiz" />
+        </form>
+    </div>
+</div>
+
+<map name="Regions">
+    <area shape="rect" coords="398,552,451,590" onmouseover="showRegion('Greater London')" onclick="updatePoints()"
+          target="_blank" alt="1"/>
+    <area shape="rect" coords="314,496,412,671" onmouseover="showRegion('South East')" target="_blank" alt="2"/>
+    <area shape="rect" coords="54,599,317,702" onmouseover="showRegion('South West')" target="_blank" alt="3"/>
+    <area shape="circle" coords="267,445,65" onmouseover="showRegion('West Midlands')" target="_blank" alt="4"/>
+    <area shape="rect" coords="184,132,272,380" onmouseover="showRegion('North West')" target="_blank" alt="5"/>
+    <area shape="rect" coords="246,31,330,189" onmouseover="showRegion('North East')" target="_blank" alt="6"/>
+    <area shape="circle" coords="350,261,75" onmouseover="showRegion('Yorkshire and the Humber')" target="_blank"
+          alt="7"/>
+    <area shape="rect" coords="316,326,459,444" onmouseover="showRegion('East Midlands')" target="_blank" alt="8"/>
+    <area shape="rect" coords="400,420,560,555" onmouseover="showRegion('East of England')" target="_blank" alt="9"/>
+
+</map>
+
+</body>
+</html>
