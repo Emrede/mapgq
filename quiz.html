@@ -3,41 +3,197 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>UK Map</title>
-    <style>
-        /*#status {*/
-        /*color: red; !*Change colour for the status message*!*/
-        /*font-size: 16pt;*/
-        /*}*/
-        /*#question {*/
-            /*font-size: 16pt;*/
-        /*}*/
-        /*#Region {*/
-            /*color: cornflowerblue;*/
-            /*font-size: 16pt;*/
-        /*}*/
-    </style>
+    <title>Region Quiz</title>
+    <style></style>
 
     <script>
+        var uniqueRandoms = [];
+        var numRandoms = 48;
+        var questionsAsked = [];
+
         var points = 0; //Total points
-        var question = 0; //Question number
+        question = getRandom(); //Question number between 1 and 3
         window.onload = function () { //Do the following on startup
             askQuestion();
         };
+        function getRandom() {
+//            var x = Math.floor((Math.random() * 3) + 1);
+////            document.getElementById("demo").innerHTML = x;
+//            return x;
+            // refill the array if needed
+            if (!uniqueRandoms.length) {
+                for (var i = 1; i < numRandoms; i++) {
+                    uniqueRandoms.push(i);
+                }
+            }
+            var index = Math.floor(Math.random() * uniqueRandoms.length);
+            var val = uniqueRandoms[index];
+
+            // now remove that value from the array
+            uniqueRandoms.splice(index, 1);
+
+            return val;
+
+
+        }
+
+        //check if same question is being asked, return true otherwise false
+        function checkQuestion() {
+
+        }
 
         function askQuestion() {
             document.getElementById("nextButton").style.display = 'none'; //Hide the nextButton
             document.getElementById("status").innerHTML = null;
             switch (question) {
-                case 0:
-                    document.getElementById("question").innerHTML = "What region Brighton is located?";
-                    break;
                 case 1:
-                    document.getElementById("question").innerHTML = "Where is Lancaster located?";
+                    document.getElementById("question").innerHTML = "What region Brighton is located?";
+                    //question=1;
                     break;
                 case 2:
-                    document.getElementById("question").innerHTML = "Where is Nottingham located?";
+                    document.getElementById("question").innerHTML = "Where is Lancaster located?";
+                    //question=2;
                     break;
+                case 3:
+                    document.getElementById("question").innerHTML = "Where is Nottingham located?";
+                    //question=3;
+                    break;
+                case 4:
+                    document.getElementById("question").innerHTML = "Where is Bristol located?";
+                    break;
+                case 5:
+                    document.getElementById("question").innerHTML = "Where is Cambridge located?";
+                    break;
+                case 6:
+                    document.getElementById("question").innerHTML = "Where is Norwich located?";
+                    break;
+                case 7:
+                    document.getElementById("question").innerHTML = "Where is Luton located?";
+                    break;
+                case 8:
+                    document.getElementById("question").innerHTML = "Where is Ipswich located?";
+                    break;
+                case 9:
+                    document.getElementById("question").innerHTML = "Where is Leicester located?";
+                    break;
+                case 10:
+                    document.getElementById("question").innerHTML = "Where is Lincoln located?";
+                    break;
+                case 11:
+                    document.getElementById("question").innerHTML = "Where is Derby located?";
+                    break;
+                case 12:
+                    document.getElementById("question").innerHTML = "Where is Repton located?";
+                    break;
+                case 13:
+                    document.getElementById("question").innerHTML = "Where is Torksey located?";
+                    break;
+                case 14:
+                    document.getElementById("question").innerHTML = "Where is York located?";
+                    break;
+                case 15:
+                    document.getElementById("question").innerHTML = "Where is Bradford located?";
+                    break;
+                case 16:
+                    document.getElementById("question").innerHTML = "Where is Leeds located?";
+                    break;
+                case 17:
+                    document.getElementById("question").innerHTML = "Where is Oldham located?";
+                    break;
+                case 18:
+                    document.getElementById("question").innerHTML = "Where is Hull located?";
+                    break;
+                case 19:
+                    document.getElementById("question").innerHTML = "Where is Newcastle located?";
+                    break;
+                case 20:
+                    document.getElementById("question").innerHTML = "Where is Gateshead located?";
+                    break;
+                case 21:
+                    document.getElementById("question").innerHTML = "Where is Sunderland located?";
+                    break;
+                case 22:
+                    document.getElementById("question").innerHTML = "Where is Durham located?";
+                    break;
+                case 23:
+                    document.getElementById("question").innerHTML = "Where is Middlesbrough located?";
+                    break;
+                case 24:
+                    document.getElementById("question").innerHTML = "Where is Blackpool located?";
+                    break;
+                case 25:
+                    document.getElementById("question").innerHTML = "Where is Manchester located?";
+                    break;
+                case 26:
+                    document.getElementById("question").innerHTML = "Where is Liverpool located?";
+                    break;
+                case 27:
+                    document.getElementById("question").innerHTML = "Where is Preston located?";
+                    break;
+                case 28:
+                    document.getElementById("question").innerHTML = "Where is Carlisle located?";
+                    break;
+                case 29:
+                    document.getElementById("question").innerHTML = "Where is Stockport located?";
+                    break;
+                case 30:
+                    document.getElementById("question").innerHTML = "Where is Trent located?";
+                    break;
+                case 31:
+                    document.getElementById("question").innerHTML = "Where is Stafford located?";
+                    break;
+                case 32:
+                    document.getElementById("question").innerHTML = "Where is Birmingham located?";
+                    break;
+                case 33:
+                    document.getElementById("question").innerHTML = "Where is Stratford located?";
+                    break;
+                case 34:
+                    document.getElementById("question").innerHTML = "Where is Worcester located?";
+                    break;
+                case 35:
+                    document.getElementById("question").innerHTML = "Where is Hereford located?";
+                    break;
+                case 36:
+                    document.getElementById("question").innerHTML = "Where is Bath located?";
+                    break;
+                case 37:
+                    document.getElementById("question").innerHTML = "Where is Salisbury located?";
+                    break;
+                case 38:
+                    document.getElementById("question").innerHTML = "Where is Exeter located?";
+                    break;
+                case 39:
+                    document.getElementById("question").innerHTML = "Where is Plymouth located?";
+                    break;
+                case 40:
+                    document.getElementById("question").innerHTML = "Where is Oxford located?";
+                    break;
+                case 41:
+                    document.getElementById("question").innerHTML = "Where is Swindon located?";
+                    break;
+                case 42:
+                    document.getElementById("question").innerHTML = "Where is Reading located?";
+                    break;
+                case 43:
+                    document.getElementById("question").innerHTML = "Where is Southhampton located?";
+                    break;
+                case 44:
+                    document.getElementById("question").innerHTML = "Where is Canterbury located?";
+                    break;
+                case 45:
+                    document.getElementById("question").innerHTML = "Where is Bournemouth located?";
+                    break;
+                case 46:
+                    document.getElementById("question").innerHTML = "Where is Portsmouth located?";
+                    break;
+                case 47:
+                    document.getElementById("question").innerHTML = "Where is Folkestone located?";
+                    break;
+                case 48:
+                    document.getElementById("question").innerHTML = "Where is Dover located?";
+                    break;
+
             }
         }
         function correctAnswer() {
@@ -49,42 +205,164 @@
             document.getElementById("status").innerHTML = "Wrong";
             document.getElementById("status").style.color = "red";
         }
-        function checkAnswer(region) {
-            if (question == 0 && region == "South East") {
+        function checkAnswer(regionId) {
+            if (question == 1 && regionId == 2) {
                 correctAnswer();
-            } else if (question == 1 && region == "West Midlands") {
+            } else if (question == 2 && regionId == 5) {
                 correctAnswer();
-            } else if (question == 2 && region == "East Midlands") {
-                document.getElementById("status").innerHTML = "Correct!";
-                document.getElementById("status").style.color = "green";
+            } else if (question == 3 && regionId == 8) {
+                correctAnswer();
+            } else if (question == 4 && regionId == 3) {
+                correctAnswer();
+            } else if (question == 5 && regionId == 9) {
+                correctAnswer();
+            } else if (question == 6 && regionId == 9) {
+                correctAnswer();
+            } else if (question == 7 && regionId == 9) {
+                correctAnswer();
+            } else if (question == 8 && regionId == 9) {
+                correctAnswer();
+            } else if (question == 9 && regionId == 8) {
+                correctAnswer();
+            } else if (question == 10 && regionId == 8) {
+                correctAnswer();
+            } else if (question == 11 && regionId == 8) {
+                correctAnswer();
+            } else if (question == 12 && regionId == 8) {
+                correctAnswer();
+            } else if (question == 13 && regionId == 8) {//East midlands
+                correctAnswer();
+            } else if (question == 14 && regionId == 7) {
+                correctAnswer();
+            } else if (question == 15 && regionId == 7) {
+                correctAnswer();
+            } else if (question == 16 && regionId == 7) {
+                correctAnswer();
+            } else if (question == 17 && regionId == 7) {
+                correctAnswer();
+            } else if (question == 18 && regionId == 7) {//Yorkshire
+                correctAnswer();
+            } else if (question == 19 && regionId == 6) {
+                correctAnswer();
+            } else if (question == 20 && regionId == 6) {
+                correctAnswer();
+            } else if (question == 21 && regionId == 6) {
+                correctAnswer();
+            } else if (question == 22 && regionId == 6) {
+                correctAnswer();
+            } else if (question == 23 && regionId == 6) {//North East
+                correctAnswer();
+            } else if (question == 24 && regionId == 5) {
+                correctAnswer();
+            } else if (question == 25 && regionId == 5) {
+                correctAnswer();
+            } else if (question == 26 && regionId == 5) {
+                correctAnswer();
+            } else if (question == 27 && regionId == 5) {
+                correctAnswer();
+            } else if (question == 28 && regionId == 5) {
+                correctAnswer();
+            } else if (question == 29 && regionId == 5) {//North West
+                correctAnswer();
+            } else if (question == 30 && regionId == 4) {
+                correctAnswer();
+            } else if (question == 31 && regionId == 4) {
+                correctAnswer();
+            } else if (question == 32 && regionId == 4) {
+                correctAnswer();
+            } else if (question == 33 && regionId == 4) {
+                correctAnswer();
+            } else if (question == 34 && regionId == 4) {
+                correctAnswer();
+            } else if (question == 35 && regionId == 4) {//West Midlands
+                correctAnswer();
+            } else if (question == 36 && regionId == 3) {
+                correctAnswer();
+            } else if (question == 37 && regionId == 3) {
+                correctAnswer();
+            } else if (question == 38 && regionId == 3) {
+                correctAnswer();
+            } else if (question == 39 && regionId == 3) {//South West
+                correctAnswer();
+            } else if (question == 40 && regionId == 2) {
+                correctAnswer();
+            } else if (question == 41 && regionId == 2) {
+                correctAnswer();
+            } else if (question == 42 && regionId == 2) {
+                correctAnswer();
+            } else if (question == 43 && regionId == 2) {
+                correctAnswer();
+            } else if (question == 44 && regionId == 2) {
+                correctAnswer();
+            } else if (question == 45 && regionId == 2) {
+                correctAnswer();
+            } else if (question == 46 && regionId == 2) {
+                correctAnswer();
+            } else if (question == 47 && regionId == 2) {
+                correctAnswer();
+            } else if (question == 48 && regionId == 2) {//South East
+                correctAnswer();
             }
+
             else {
                 wrongAnswer();
             }
         }
+
         function nextQuestion() {
-            question++; //Go to the next question
+            ///alert(getRandom());
+            question = getRandom();
             askQuestion();
         }
-        function showRegion(region) {
+
+        function showRegion(regionId) {
+            switch (regionId) {
+                case 1:
+                    region = 'Greater London';
+                    break;
+                case 2:
+                    region = 'South East England';
+                    break;
+                case 3:
+                    region = 'South West England';
+                    break;
+                case 4:
+                    region = 'West Midlands';
+                    break;
+                case 5:
+                    region = 'North West England';
+                    break;
+                case 6:
+                    region = 'North East England';
+                    break;
+                case 7:
+                    region = 'Yorkshire and the Humber';
+                    break;
+                case 8:
+                    region = 'East Midlands';
+                    break;
+                case 9:
+                    region = 'East of England';
+                    break;
+            }
             document.getElementById("Region").innerHTML = region;
         }
+
         function updatePoints() {
 //            document.getElementById("demo").innerHTML = "Paragraph changed.";
             points = points + 5;
             return points
         }
-
     </script>
 </head>
 
-<body>
+<body background="quiz_b.png">
 <div>
-    <div align="center" style="border:3px solid orange">
-        <h2>Region Quiz</h2>
+    <div align="center" style="color: white">
+        <h1>Region Quiz</h1>
     </div>
     <div align="left" style="float: left">
-        <img src="regions.png" usemap="#Regions"/> <!--585 x 800 map-->
+        <img src="regionsc.png" usemap="#Regions"/> <!--585 x 800 map-->
     </div>
     <div align="center">
         <h3 id="question"></h3>
@@ -92,32 +370,32 @@
         <h1 id="status"></h1>
         <input type="button" id="nextButton" value="Next Question" onclick="nextQuestion()"/>
         <form action="cities.html">
-            <input type="submit" value="Back to the map with cities" />
+            <input type="submit" value="Back to the map with cities"/>
         </form>
     </div>
 </div>
 
 <map name="Regions">
-    <area shape="rect" coords="398,552,451,590" onmouseover="showRegion('Greater London')"
-          onclick="checkAnswer('Greater London')"
+    <area shape="rect" coords="398,552,451,590" onmouseover="showRegion(1)"
+          onclick="checkAnswer(1)"
           target="_blank" alt="1"/>
-    <area shape="rect" coords="314,496,412,671" onmouseover="showRegion('South East')"
-          onclick="checkAnswer('South East')" target="_blank" alt="2"/>
-    <area shape="rect" coords="54,599,317,702" onmouseover="showRegion('South West')"
-          onclick="checkAnswer('South West')" target="_blank" alt="3"/>
-    <area shape="circle" coords="267,445,65" onmouseover="showRegion('West Midlands')"
-          onclick="checkAnswer('West Midlands')" target="_blank" alt="4"/>
-    <area shape="rect" coords="184,132,272,380" onmouseover="showRegion('North West')"
-          onclick="checkAnswer('North West')" target="_blank" alt="5"/>
-    <area shape="rect" coords="246,31,330,189" onmouseover="showRegion('North East')"
-          onclick="checkAnswer('North East')" target="_blank" alt="6"/>
-    <area shape="circle" coords="350,261,75" onmouseover="showRegion('Yorkshire and the Humber')"
-          onclick="checkAnswer('Yorkshire and the Humber')" target="_blank"
+    <area shape="rect" coords="314,496,412,671" onmouseover="showRegion(2)"
+          onclick="checkAnswer(2)" target="_blank" alt="2"/>
+    <area shape="rect" coords="30,550,317,745" onmouseover="showRegion(3)"
+          onclick="checkAnswer(3)" target="_blank" alt="3"/>
+    <area shape="circle" coords="267,445,65" onmouseover="showRegion(4)"
+          onclick="checkAnswer(4)" target="_blank" alt="4"/>
+    <area shape="rect" coords="184,132,272,380" onmouseover="showRegion(5)"
+          onclick="checkAnswer(5)" target="_blank" alt="5"/>
+    <area shape="rect" coords="246,31,330,189" onmouseover="showRegion(6)"
+          onclick="checkAnswer(6)" target="_blank" alt="6"/>
+    <area shape="circle" coords="350,261,75" onmouseover="showRegion(7)"
+          onclick="checkAnswer(7)" target="_blank"
           alt="7"/>
-    <area shape="rect" coords="316,326,459,444" onmouseover="showRegion('East Midlands')"
-          onclick="checkAnswer('East Midlands')" target="_blank" alt="8"/>
-    <area shape="rect" coords="400,420,560,555" onmouseover="showRegion('East of England')"
-          onclick="checkAnswer('East of England')" target="_blank" alt="9"/>
+    <area shape="rect" coords="316,326,459,444" onmouseover="showRegion(8)"
+          onclick="checkAnswer(8)" target="_blank" alt="8"/>
+    <area shape="rect" coords="400,420,560,555" onmouseover="showRegion(9)"
+          onclick="checkAnswer(9)" target="_blank" alt="9"/>
 </map>
 
 </body>

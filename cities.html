@@ -3,49 +3,125 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>UK Map</title>
+    <title>Regions of England</title>
+    <style>
+        #infarea {
+            border: 1px solid black;
+            margin: 100px 150px 100px 80px;
+            /*background-color: lightblue;*/
+            /*float: right;*/
+
+        }
+    </style>
     <script>
         var points = 0;
-        function showRegion(region) {
+        function showRegion(regionId) {
+            switch (regionId) {
+                case 1:
+                    region = 'Greater London';
+                    break;
+                case 2:
+                    region = 'South East England';
+                    break;
+                case 3:
+                    region = 'South West England';
+                    break;
+                case 4:
+                    region = 'West Midlands';
+                    break;
+                case 5:
+                    region = 'North West England';
+                    break;
+                case 6:
+                    region = 'North East England';
+                    break;
+                case 7:
+                    region = 'Yorkshire and the Humber';
+                    break;
+                case 8:
+                    region = 'East Midlands';
+                    break;
+                case 9:
+                    region = 'East of England';
+                    break;
+            }
             document.getElementById("Region").innerHTML = region;
         }
-        function updatePoints() {
-//            document.getElementById("demo").innerHTML = "Paragraph changed.";
-            points = points + 5;
-            return points
+
+        function regionInfo(regionId) {
+            var info;
+            switch (regionId) {
+                case 1:
+                    info = 'London, or Greater London, is a region of England which forms the administrative boundaries of London. It is organised into 33 local government districts: the 32 London boroughs (which makes up the ceremonial county of Greater London) and the City of London (which is a separate county but still part of the region). The Greater London Authority, based in Southwark, is responsible for strategic local government across the region and consists of the Mayor of London and the London Assembly. The county of Greater London was created on 1 April 1965 through the London Government Act 1963.[3][4][5] Administratively, Greater London was first established as a sui generis council area under the Greater London Council between 1963 and 1986. The area was re-established as a region in 1994, and the Greater London Authority formed in 2000. The region covers 1,572 km2 (607 sq mi) and had a population of 8,174,000 at the 2011 census.';
+                    break;
+                case 2:
+                    info = 'South East England is the most populous of the nine official regions of England at the first level of NUTS for statistical purposes. It consists of Berkshire, Buckinghamshire, East Sussex, Hampshire, the Isle of Wight, Kent, Oxfordshire, Surrey and West Sussex. As with the other regions of England, apart from Greater London, the south east has no elected government.';
+                    break;
+                case 3:
+                    info = 'South West England is one of nine official regions of England. It is the largest in area, covering 9,200 square miles (23,800 km2)[1] and the counties of Gloucestershire, Bristol, Wiltshire, Somerset, Dorset, Devon and Cornwall, as well as the Isles of Scilly. Five million people live in South West England.';
+                    break;
+                case 4:
+                    info = 'The West Midlands is one of nine official regions of England at the first level of NUTS for statistical purposes. It covers the western half of the area traditionally known as the Midlands. It contains the second most populous British city, Birmingham, and the larger West Midlands conurbation, which includes the city of Wolverhampton and large towns of Dudley, Solihull, Walsall and West Bromwich. The city of Coventry is also located within the West Midlands county, but is separated from the conurbation to the west by several miles of green belt.';
+                    break;
+                case 5:
+                    info = 'North West England, one of nine official regions of England, consists of the five counties of Cheshire, Cumbria, Greater Manchester, Lancashire and Merseyside. The North West had a population of 7,052,000 in 2011.[1] It is the third most populated region in the United Kingdom after the South East and Greater London.';
+                    break;
+                case 6:
+                    info = 'North East England is one of the nine regions of England that are classified at the first level of NUTS for statistical purposes. It covers Northumberland, County Durham, Tyne and Wear, and the Tees Valley. The region is home to three large conurbations: Teesside, Wearside, and Tyneside, the latter of which is the largest of the three and the eighth most populous conurbation in the United Kingdom.[1] There are only three cities in the region; Newcastle upon Tyne is the largest city in the region with a population of just under 280,000, followed by Sunderland, both of which are located in the metropolitan county of Tyne and Wear. The city of Durham is the county town of County Durham. Other large settlements in the region include Darlington; Gateshead; Hartlepool; Middlesbrough; South Shields; Stockton-on-Tees and Washington.';
+                    break;
+                case 7:
+                    info = 'Yorkshire and the Humber is one of nine official regions of England at the first level of NUTS for statistical purposes. It comprises most of Yorkshire (South Yorkshire, West Yorkshire, the East Riding of Yorkshire including Hull, the shire county of North Yorkshire and the City of York), North Lincolnshire and North East Lincolnshire. It does not include Middlesbrough or Redcar and Cleveland (which are in the ceremonial county of North Yorkshire but not in the shire county). The population in 2011 was 5,284,000.[1]';
+                    break;
+                case 8:
+                    info = 'The East Midlands is one of nine official regions of England at the first level of NUTS for statistical purposes. The eastern part of the Midlands, it consists of Derbyshire, Leicestershire, Lincolnshire (except North and North east Lincolnshire), Northamptonshire, Nottinghamshire and Rutland.';
+                    break;
+                case 9:
+                    info = 'The East of England is one of nine official regions of England at the first level of NUTS for statistical purposes. It was created in 1994 and was adopted for statistics from 1999. It includes the ceremonial counties of Bedfordshire, Cambridgeshire, Essex, Hertfordshire, Norfolk and Suffolk. Essex has the highest population in the region.';
+                    break;
+            }
+            document.getElementById("Info").innerHTML = info;
         }
+
     </script>
 </head>
 
-<body>
+<body background="cities_b.png">
 
 <div>
-    <div align="center" style="border:3px solid green">
-        <h2>UK Regional Map</h2>
+    <div align="center" style="font-family: 'Trebuchet MS'">
+        <h2>Regions of England</h2>
     </div>
     <div align="left" style="float: left">
-        <img src="cities_regionsd.png" usemap="#Regions"/></div>
-    <div align="center">
-        <h2 style="color: cornflowerblue" id="Region">No region is pointed. </h2>
-        <!--<button onclick="window.alert(points)">Show the points</button>-->
+        <img src="cities_regionsc.png" usemap="#Regions"/></div>
+    <div id = infarea align="center">
+        <h2 style="font-family: 'Trebuchet MS'; color: cornflowerblue" id="Region">No region is pointed. </h2>
+        <p style="font-family: 'Trebuchet MS'">Click on to the region for general information.</p>
+        <p id="Info" align='justify' style="font-family: 'Trebuchet MS'; color: firebrick; font-size: 22px"></p>
         <form action="quiz.html">
-            <input type="submit" value="Go to the quiz" />
+            <input type="submit" value="Go to the quiz"/>
         </form>
     </div>
 </div>
 
 <map name="Regions">
-    <area shape="rect" coords="398,552,451,590" onmouseover="showRegion('Greater London')" onclick="updatePoints()"
+    <area shape="rect" coords="398,552,451,590" onmouseover="showRegion(1)" onclick="regionInfo(1)"
           target="_blank" alt="1"/>
-    <area shape="rect" coords="314,496,412,671" onmouseover="showRegion('South East')" target="_blank" alt="2"/>
-    <area shape="rect" coords="54,599,317,702" onmouseover="showRegion('South West')" target="_blank" alt="3"/>
-    <area shape="circle" coords="267,445,65" onmouseover="showRegion('West Midlands')" target="_blank" alt="4"/>
-    <area shape="rect" coords="184,132,272,380" onmouseover="showRegion('North West')" target="_blank" alt="5"/>
-    <area shape="rect" coords="246,31,330,189" onmouseover="showRegion('North East')" target="_blank" alt="6"/>
-    <area shape="circle" coords="350,261,75" onmouseover="showRegion('Yorkshire and the Humber')" target="_blank"
+    <area shape="rect" coords="314,496,412,671" onmouseover="showRegion(2)" onclick="regionInfo(2)" target="_blank"
+          alt="2"/>
+    <area shape="rect" coords="30,550,317,745" onmouseover="showRegion(3)" onclick="regionInfo(3)" target="_blank"
+          alt="3"/>
+    <area shape="circle" coords="267,445,65" onmouseover="showRegion(4)" onclick="regionInfo(4)" target="_blank"
+          alt="4"/>
+    <area shape="rect" coords="184,132,272,380" onmouseover="showRegion(5)" onclick="regionInfo(5)" target="_blank"
+          alt="5"/>
+    <area shape="rect" coords="246,31,330,189" onmouseover="showRegion(6)" onclick="regionInfo(6 )" target="_blank"
+          alt="6"/>
+    <area shape="circle" coords="350,261,75" onmouseover="showRegion(7)" onclick="regionInfo(7)" target="_blank"
           alt="7"/>
-    <area shape="rect" coords="316,326,459,444" onmouseover="showRegion('East Midlands')" target="_blank" alt="8"/>
-    <area shape="rect" coords="400,420,560,555" onmouseover="showRegion('East of England')" target="_blank" alt="9"/>
+    <area shape="rect" coords="316,326,459,444" onmouseover="showRegion(8)" onclick="regionInfo(8)" target="_blank"
+          alt="8"/>
+    <area shape="rect" coords="400,420,560,555" onmouseover="showRegion(9)" onclick="regionInfo(9)" target="_blank"
+          alt="9"/>
 
 </map>
 
