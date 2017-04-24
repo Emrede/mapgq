@@ -5,9 +5,17 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Regions of England</title>
     <style>
+        div.absolute {
+            position: absolute;
+            top: 280px;
+            right: 50px;
+            width: 400px;
+            /*height: 100px;*/
+            /*border: 3px solid #73AD21;*/
+        }
         #infarea {
-            border: 1px solid black;
-            margin: 100px 150px 100px 80px;
+            /*border: 1px solid black;
+            /*margin: 100px 150px 100px 80px;
             /*background-color: lightblue;*/
             /*float: right;*/
 
@@ -89,17 +97,18 @@
 
 <div>
     <div align="center" style="font-family: 'Trebuchet MS'">
-        <h2>Regions of England</h2>
+        <h2 style="color: white">Regions of England</h2>
     </div>
     <div align="left" style="float: left">
         <img src="cities_regionsc.png" usemap="#Regions"/></div>
-    <div id = infarea align="center">
+    <div class= "absolute" id = infarea align="center">
+        <form action="quiz.html">
+            <input type="submit" style="font-size: 20px" value="Go to the quiz"/>
+        </form>
         <h2 style="font-family: 'Trebuchet MS'; color: cornflowerblue" id="Region">No region is pointed. </h2>
         <p style="font-family: 'Trebuchet MS'">Click on to the region for general information.</p>
         <p id="Info" align='justify' style="font-family: 'Trebuchet MS'; color: firebrick; font-size: 22px"></p>
-        <form action="quiz.html">
-            <input type="submit" value="Go to the quiz"/>
-        </form>
+
     </div>
 </div>
 

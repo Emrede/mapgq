@@ -4,7 +4,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Region Quiz</title>
-    <style></style>
+    <style>div.absolute {
+        position: absolute;
+        top: 280px;
+        right: 50px;
+        width: 400px;
+        /*height: 100px;*/
+        /*border: 3px solid #73AD21;*/
+    }</style>
 
     <script>
         var uniqueRandoms = [];
@@ -359,18 +366,18 @@
 <body background="quiz_b.png">
 <div>
     <div align="center" style="color: white">
-        <h1>Region Quiz</h1>
+        <h1>Find the Cities on the Regional Map!</h1>
     </div>
     <div align="left" style="float: left">
         <img src="regionsc.png" usemap="#Regions"/> <!--585 x 800 map-->
     </div>
-    <div align="center">
-        <h3 id="question"></h3>
+    <div class = absolute align="center">
+        <h1 id="question"></h1>
         <h1 id="Region" style="color: cornflowerblue;"></h1>
         <h1 id="status"></h1>
-        <input type="button" id="nextButton" value="Next Question" onclick="nextQuestion()"/>
+        <input style = "font-size: 20px" type="button" id="nextButton" value="Next Question" onclick="nextQuestion()"/>
         <form action="cities.html">
-            <input type="submit" value="Back to the map with cities"/>
+            <input type="submit" style="font-size: 20px" value="Back to the map with cities"/>
         </form>
     </div>
 </div>
