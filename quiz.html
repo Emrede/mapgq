@@ -13,15 +13,21 @@
         /*border: 3px solid #73AD21;*/
     }</style>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+
+    </script>
+
     <script>
+        var duration = 20; //In second unit
+        var seconds, questionCount = 1, pointsUpdated = false;
         var uniqueRandoms = [];
         var numRandoms = 48;
-        var questionsAsked = [];
-
+        var help= "Evey wrong click on a wrong region removes 5 points from your total points, every correct answer gives you additional points regarding the time left. Good luck!";
         var points = 0; //Total points
         question = getRandom(); //Question number between 1 and 3
         window.onload = function () { //Do the following on startup
             askQuestion();
+            document.getElementById("questionCount").innerHTML = "Question " + questionCount;
         };
         function getRandom() {
 //            var x = Math.floor((Math.random() * 3) + 1);
@@ -41,7 +47,6 @@
 
             return val;
 
-
         }
 
         //check if same question is being asked, return true otherwise false
@@ -50,6 +55,7 @@
         }
 
         function askQuestion() {
+
             document.getElementById("nextButton").style.display = 'none'; //Hide the nextButton
             document.getElementById("status").innerHTML = null;
             switch (question) {
@@ -207,10 +213,13 @@
             document.getElementById("status").innerHTML = "Correct! You can proceed to the next question.";
             document.getElementById("status").style.color = "green";
             document.getElementById("nextButton").style.display = 'block';
+            clearInterval(interval);
+            updatePoints(true);
         }
         function wrongAnswer() {
             document.getElementById("status").innerHTML = "Wrong";
             document.getElementById("status").style.color = "red";
+            updatePoints(false);
         }
         function checkAnswer(regionId) {
             if (question == 1 && regionId == 2) {
@@ -317,9 +326,26 @@
         }
 
         function nextQuestion() {
-            ///alert(getRandom());
-            question = getRandom();
-            askQuestion();
+            questionCount++;
+            if (questionCount < 11)
+            {
+                document.getElementById("questionCount").innerHTML = "Question " + questionCount;
+                pointsUpdated = false;
+                window.display = $('#time');
+                var startDate = startTimer(duration, window.display);
+                question = getRandom();
+                askQuestion();
+            }
+            else
+            {
+                document.getElementById("questionCount").innerHTML = "Congratulations you have completed the test!";
+                document.getElementById("questionCount").style.color='green';
+                document.getElementById("status").style.visibility = "hidden";
+                document.getElementById("nextButton").style.visibility = 'hidden';
+                document.getElementById("question").style.visibility = 'hidden';
+                document.getElementById("Region").style.visibility = 'hidden';
+            }
+
         }
 
         function showRegion(regionId) {
@@ -354,16 +380,61 @@
             }
             document.getElementById("Region").innerHTML = region;
         }
+        function startTimer(duration, display) {
+            var timer = duration,
+                minutes;
 
-        function updatePoints() {
-//            document.getElementById("demo").innerHTML = "Paragraph changed.";
-            points = points + 5;
+            interval = setInterval(function () {
+                seconds = parseInt(timer % 60, 10);
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                display.text(seconds);
+
+                if (--timer < 0) {
+                    timer = 0;
+                }
+            }, 1000);
+            return new Date();
+        }
+        jQuery(function ($) {
+            //var duration = 20;
+            window.display = $('#time');
+            var startDate = startTimer(duration, window.display);
+            $('map').click(function () {
+
+                var now = new Date();
+                //var seconds = now.getTime() - startDate.getTime()) / 1000;
+                seconds = Math.round(seconds);
+                var result = duration - seconds;
+                if (result < 1) {
+                    $('#elapsed').html("0");
+                    $('#runtime').append('<p>' + 0 + '</p>');
+                } else {
+                    $('#runtime').append('<p>' + result + '</p>');
+                    $('#elapsed').html(result);
+                }
+            });
+            $('button').click(function () {
+            });
+        });
+        //clearInterval(interval)
+        function updatePoints(isAnswerCorrect) {
+            if (!pointsUpdated) {
+                if (isAnswerCorrect) {
+                    points = points + (seconds);
+                    pointsUpdated = true;
+                }
+                else {
+                    points = points - 5;
+                }
+            }
+            document.getElementById("points").innerHTML = "Points: " + points;
             return points
         }
     </script>
 </head>
 
 <body background="quiz_b.png">
+<!-- <div>Time Left: <span id="time"></span> sec</div> -->
 <div>
     <div align="center" style="color: white">
         <h1>Find the Cities on the Regional Map!</h1>
@@ -371,13 +442,20 @@
     <div align="left" style="float: left">
         <img src="regionsc.png" usemap="#Regions"/> <!--585 x 800 map-->
     </div>
-    <div class = absolute align="center">
-        <h1 id="question"></h1>
-        <h1 id="Region" style="color: cornflowerblue;"></h1>
+    <div class=absolute align="center">
+        <div>Time Left: <span id="time"></span> sec</div>
+        <h2 id="questionCount"></h2>
+        <h3 id="points"></h3>
+        <!--<div id="elapsed"></div>-->
+        <h2 id="question"></h2>
+        <h2 id="Region" style="color: cornflowerblue;"></h2>
         <h1 id="status"></h1>
-        <input style = "font-size: 20px" type="button" id="nextButton" value="Next Question" onclick="nextQuestion()"/>
+
+
+        <input style="font-size: 20px; margin: 2%" type="button" id="nextButton" value="Next Question" onclick="nextQuestion()"/>
+        <input type="button" id="restart" style="font-size: 20px; margin: 2%" value="Restart the quiz" onclick="window.location.reload()"/>
         <form action="cities.html">
-            <input type="submit" style="font-size: 20px" value="Back to the map with cities"/>
+            <input type="submit" style="font-size: 20px; margin: 2%" value="Back to the cities map"/>
         </form>
     </div>
 </div>
@@ -407,5 +485,5 @@
 
 </body>
 
-<!--<button onclick="window.alert(points)">Show the points</button>-->
+<button onclick="window.alert(help)">Help</button>
 </html>
