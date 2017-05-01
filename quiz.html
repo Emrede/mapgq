@@ -22,7 +22,7 @@
         var seconds, questionCount = 1, pointsUpdated = false;
         var uniqueRandoms = [];
         var numRandoms = 48;
-        var help= "Evey wrong click on a wrong region removes 5 points from your total points, every correct answer gives you additional points regarding the time left. Good luck!";
+        var help = "Before the time expires, you must select a region on the map where the asked city is. Each incorrect selection will reduce your score by 5 points. Each correct answer will give you additional points based on the time left when you click on the correct region. You can get up to 20 points for each correct answer. If you have difficulties answering the questions, you can go back and exercise with the cities on the map. Good luck!";
         var points = 0; //Total points
         question = getRandom(); //Question number between 1 and 3
         window.onload = function () { //Do the following on startup
@@ -327,8 +327,7 @@
 
         function nextQuestion() {
             questionCount++;
-            if (questionCount < 11)
-            {
+            if (questionCount < 11) {
                 document.getElementById("questionCount").innerHTML = "Question " + questionCount;
                 pointsUpdated = false;
                 window.display = $('#time');
@@ -336,10 +335,9 @@
                 question = getRandom();
                 askQuestion();
             }
-            else
-            {
+            else {
                 document.getElementById("questionCount").innerHTML = "Congratulations you have completed the test!";
-                document.getElementById("questionCount").style.color='green';
+                document.getElementById("questionCount").style.color = 'green';
                 document.getElementById("status").style.visibility = "hidden";
                 document.getElementById("nextButton").style.visibility = 'hidden';
                 document.getElementById("question").style.visibility = 'hidden';
@@ -419,30 +417,76 @@
         //clearInterval(interval)
         function updatePoints(isAnswerCorrect) {
             if (!pointsUpdated) {
-                if (isAnswerCorrect) {
-                    points = points + (seconds);
+                if (isAnswerCorrect && seconds > 0) {
+                    points = (points + Number(seconds));
                     pointsUpdated = true;
-                }
-                else {
-                    points = points - 5;
+                } else if (!isAnswerCorrect && seconds > 0) {
+                    points -= 5;
                 }
             }
-            document.getElementById("points").innerHTML = "Points: " + points;
+            document.getElementById("points").innerHTML = "Score: " + points;
             return points
         }
+
+        function onHover(regionId) {
+            switch (regionId) {
+                case 1:
+                    $("#mapImg").attr('src', 'imgs/region1.png');
+                    showRegion(1);
+                    break;
+                case 2:
+                    $("#mapImg").attr('src', 'imgs/region2.png');
+                    showRegion(2);
+                    break;
+                case 3:
+                    $("#mapImg").attr('src', 'imgs/region3.png');
+                    showRegion(3);
+                    break;
+                case 4:
+                    $("#mapImg").attr('src', 'imgs/region4.png');
+                    showRegion(4);
+                    break;
+                case 5:
+                    $("#mapImg").attr('src', 'imgs/region5.png');
+                    showRegion(5);
+                    break;
+                case 6:
+                    $("#mapImg").attr('src', 'imgs/region6.png');
+                    showRegion(6);
+                    break;
+                case 7:
+                    $("#mapImg").attr('src', 'imgs/region7.png');
+                    showRegion(7);
+                    break;
+                case 8:
+                    $("#mapImg").attr('src', 'imgs/region8.png');
+                    showRegion(8);
+                    break;
+                case 9:
+                    $("#mapImg").attr('src', 'imgs/region9.png');
+                    showRegion(9);
+                    break;
+            }
+
+        }
+
+        function offHover() {
+            $("#mapImg").attr('src', 'imgs/regionsc.png');
+        }
+
     </script>
 </head>
 
-<body background="quiz_b.png">
+<body background="imgs/quiz_b.png">
 <!-- <div>Time Left: <span id="time"></span> sec</div> -->
 <div>
     <div align="center" style="color: white">
         <h1>Find the Cities on the Regional Map!</h1>
     </div>
-    <div align="left" style="float: left">
-        <img src="regionsc.png" usemap="#Regions"/> <!--585 x 800 map-->
+    <div style="width: 50%; float:left">
+        <img id="mapImg" src="imgs/regionsc.png" usemap="#Regions"/> <!--585 x 800 map-->
     </div>
-    <div class=absolute align="center">
+    <div class=absolute align="center" style="width: 50%; float:right">
         <div>Time Left: <span id="time"></span> sec</div>
         <h2 id="questionCount"></h2>
         <h3 id="points"></h3>
@@ -452,8 +496,10 @@
         <h1 id="status"></h1>
 
 
-        <input style="font-size: 20px; margin: 2%" type="button" id="nextButton" value="Next Question" onclick="nextQuestion()"/>
-        <input type="button" id="restart" style="font-size: 20px; margin: 2%" value="Restart the quiz" onclick="window.location.reload()"/>
+        <input style="font-size: 20px; margin: 2%" type="button" id="nextButton" value="Next Question"
+               onclick="nextQuestion()"/>
+        <input type="button" id="restart" style="font-size: 20px; margin: 2%" value="Restart the quiz"
+               onclick="window.location.reload()"/>
         <form action="cities.html">
             <input type="submit" style="font-size: 20px; margin: 2%" value="Back to the cities map"/>
         </form>
@@ -461,29 +507,29 @@
 </div>
 
 <map name="Regions">
-    <area shape="rect" coords="398,552,451,590" onmouseover="showRegion(1)"
+    <area shape="rect" coords="398,552,451,590" onmouseover="onHover(1)" ; onmouseout="offHover();"
           onclick="checkAnswer(1)"
           target="_blank" alt="1"/>
-    <area shape="rect" coords="314,496,412,671" onmouseover="showRegion(2)"
+    <area shape="rect" coords="314,496,412,671" onmouseover="onHover(2)" ; onmouseout="offHover();"
           onclick="checkAnswer(2)" target="_blank" alt="2"/>
-    <area shape="rect" coords="30,550,317,745" onmouseover="showRegion(3)"
+    <area shape="rect" coords="30,550,317,745" onmouseover="onHover(3)" ; onmouseout="offHover();"
           onclick="checkAnswer(3)" target="_blank" alt="3"/>
-    <area shape="circle" coords="267,445,65" onmouseover="showRegion(4)"
+    <area shape="circle" coords="267,445,65" onmouseover="onHover(4)" ; onmouseout="offHover();"
           onclick="checkAnswer(4)" target="_blank" alt="4"/>
-    <area shape="rect" coords="184,132,272,380" onmouseover="showRegion(5)"
+    <area shape="rect" coords="184,132,272,380" onmouseover="onHover(5)" ; onmouseout="offHover();"
           onclick="checkAnswer(5)" target="_blank" alt="5"/>
-    <area shape="rect" coords="246,31,330,189" onmouseover="showRegion(6)"
+    <area shape="rect" coords="246,31,330,189" onmouseover="onHover(6)" ; onmouseout="offHover();"
           onclick="checkAnswer(6)" target="_blank" alt="6"/>
-    <area shape="circle" coords="350,261,75" onmouseover="showRegion(7)"
+    <area shape="circle" coords="350,261,75" onmouseover="onHover(7)" ; onmouseout="offHover();"
           onclick="checkAnswer(7)" target="_blank"
           alt="7"/>
-    <area shape="rect" coords="316,326,459,444" onmouseover="showRegion(8)"
+    <area shape="rect" coords="316,326,459,444" onmouseover="onHover(8)" ; onmouseout="offHover();"
           onclick="checkAnswer(8)" target="_blank" alt="8"/>
-    <area shape="rect" coords="400,420,560,555" onmouseover="showRegion(9)"
+    <area shape="circle" coords="465,487,90" onmouseover="onHover(9)" ; onmouseout="offHover();"
           onclick="checkAnswer(9)" target="_blank" alt="9"/>
 </map>
 
 </body>
 
-<button onclick="window.alert(help)">Help</button>
+<button style="font-size: 20px;" onclick="window.alert(help)">Quiz Rules</button>
 </html>

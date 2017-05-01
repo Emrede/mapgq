@@ -21,7 +21,11 @@
 
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <script>
+        var help1 = "Before the time expires, you must select a region on the map where the asked city is. Each incorrect selection will reduce your score by 5 points. Each correct answer will give you additional points based on the time left when you click on the correct region. You can get up to 20 points for each correct answer. If you have difficulties answering the questions, you can go back and exercise with the cities on the map. Good luck!";
+        var map = "imgs/cities_regionsc.png";
         var points = 0;
         function showRegion(regionId) {
             switch (regionId) {
@@ -66,19 +70,19 @@
                     info = 'South East England is the most populous of the nine official regions of England at the first level of NUTS for statistical purposes. It consists of Berkshire, Buckinghamshire, East Sussex, Hampshire, the Isle of Wight, Kent, Oxfordshire, Surrey and West Sussex. As with the other regions of England, apart from Greater London, the south east has no elected government.';
                     break;
                 case 3:
-                    info = 'South West England is one of nine official regions of England. It is the largest in area, covering 9,200 square miles (23,800 km2)[1] and the counties of Gloucestershire, Bristol, Wiltshire, Somerset, Dorset, Devon and Cornwall, as well as the Isles of Scilly. Five million people live in South West England.';
+                    info = 'South West England is one of nine official regions of England. It is the largest in area, covering 9,200 square miles (23,800 km2) and the counties of Gloucestershire, Bristol, Wiltshire, Somerset, Dorset, Devon and Cornwall, as well as the Isles of Scilly. Five million people live in South West England.';
                     break;
                 case 4:
                     info = 'The West Midlands is one of nine official regions of England at the first level of NUTS for statistical purposes. It covers the western half of the area traditionally known as the Midlands. It contains the second most populous British city, Birmingham, and the larger West Midlands conurbation, which includes the city of Wolverhampton and large towns of Dudley, Solihull, Walsall and West Bromwich. The city of Coventry is also located within the West Midlands county, but is separated from the conurbation to the west by several miles of green belt.';
                     break;
                 case 5:
-                    info = 'North West England, one of nine official regions of England, consists of the five counties of Cheshire, Cumbria, Greater Manchester, Lancashire and Merseyside. The North West had a population of 7,052,000 in 2011.[1] It is the third most populated region in the United Kingdom after the South East and Greater London.';
+                    info = 'North West England, one of nine official regions of England, consists of the five counties of Cheshire, Cumbria, Greater Manchester, Lancashire and Merseyside. The North West had a population of 7,052,000 in 2011. It is the third most populated region in the United Kingdom after the South East and Greater London.';
                     break;
                 case 6:
-                    info = 'North East England is one of the nine regions of England that are classified at the first level of NUTS for statistical purposes. It covers Northumberland, County Durham, Tyne and Wear, and the Tees Valley. The region is home to three large conurbations: Teesside, Wearside, and Tyneside, the latter of which is the largest of the three and the eighth most populous conurbation in the United Kingdom.[1] There are only three cities in the region; Newcastle upon Tyne is the largest city in the region with a population of just under 280,000, followed by Sunderland, both of which are located in the metropolitan county of Tyne and Wear. The city of Durham is the county town of County Durham. Other large settlements in the region include Darlington; Gateshead; Hartlepool; Middlesbrough; South Shields; Stockton-on-Tees and Washington.';
+                    info = 'North East England is one of the nine regions of England that are classified at the first level of NUTS for statistical purposes. It covers Northumberland, County Durham, Tyne and Wear, and the Tees Valley. The region is home to three large conurbations: Teesside, Wearside, and Tyneside, the latter of which is the largest of the three and the eighth most populous conurbation in the United Kingdom. There are only three cities in the region; Newcastle upon Tyne is the largest city in the region with a population of just under 280,000, followed by Sunderland, both of which are located in the metropolitan county of Tyne and Wear. The city of Durham is the county town of County Durham. Other large settlements in the region include Darlington; Gateshead; Hartlepool; Middlesbrough; South Shields; Stockton-on-Tees and Washington.';
                     break;
                 case 7:
-                    info = 'Yorkshire and the Humber is one of nine official regions of England at the first level of NUTS for statistical purposes. It comprises most of Yorkshire (South Yorkshire, West Yorkshire, the East Riding of Yorkshire including Hull, the shire county of North Yorkshire and the City of York), North Lincolnshire and North East Lincolnshire. It does not include Middlesbrough or Redcar and Cleveland (which are in the ceremonial county of North Yorkshire but not in the shire county). The population in 2011 was 5,284,000.[1]';
+                    info = 'Yorkshire and the Humber is one of nine official regions of England at the first level of NUTS for statistical purposes. It comprises most of Yorkshire (South Yorkshire, West Yorkshire, the East Riding of Yorkshire including Hull, the shire county of North Yorkshire and the City of York), North Lincolnshire and North East Lincolnshire. It does not include Middlesbrough or Redcar and Cleveland (which are in the ceremonial county of North Yorkshire but not in the shire county). The population in 2011 was 5,284,000.';
                     break;
                 case 8:
                     info = 'The East Midlands is one of nine official regions of England at the first level of NUTS for statistical purposes. The eastern part of the Midlands, it consists of Derbyshire, Leicestershire, Lincolnshire (except North and North east Lincolnshire), Northamptonshire, Nottinghamshire and Rutland.';
@@ -89,47 +93,93 @@
             }
             document.getElementById("Info").innerHTML = info;
         }
+        function onHover(regionId) {
+            switch (regionId) {
+                case 1:
+                    $("#mapImg").attr('src', 'imgs/cr1.png');
+                    showRegion(1);
+                    break;
+                case 2:
+                    $("#mapImg").attr('src', 'imgs/cr2.png');
+                    showRegion(2);
+                    break;
+                case 3:
+                    $("#mapImg").attr('src', 'imgs/cr3.png');
+                    showRegion(3);
+                    break;
+                case 4:
+                    $("#mapImg").attr('src', 'imgs/cr4.png');
+                    showRegion(4);
+                    break;
+                case 5:
+                    $("#mapImg").attr('src', 'imgs/cr5.png');
+                    showRegion(5);
+                    break;
+                case 6:
+                    $("#mapImg").attr('src', 'imgs/cr6.png');
+                    showRegion(6);
+                    break;
+                case 7:
+                    $("#mapImg").attr('src', 'imgs/cr7.png');
+                    showRegion(7);
+                    break;
+                case 8:
+                    $("#mapImg").attr('src', 'imgs/cr8.png');
+                    showRegion(8);
+                    break;
+                case 9:
+                    $("#mapImg").attr('src', 'imgs/cr9.png');
+                    showRegion(9);
+                    break;
+            }
+
+        }
+
+        function offHover() {
+            $("#mapImg").attr('src', 'imgs/cities_regionsc.png');
+        }
 
     </script>
 </head>
 
-<body background="cities_b.png">
+<body background="imgs/cities_b.png">
 
 <div>
     <div align="center" style="font-family: 'Trebuchet MS'">
         <h2 style="color: white">Regions of England</h2>
     </div>
-    <div align="left" style="float: left">
-        <img src="cities_regionsc.png" usemap="#Regions"/></div>
-    <div class= "absolute" id = infarea align="center">
+    <div style="width: 50%; float:left">
+        <img id = "mapImg" src="imgs/cities_regionsc.png" usemap="#Regions"/></div>
+    <div class= "absolute" id = infarea  align="center" style="width: 35%; float:right" >
         <form action="quiz.html">
             <input type="submit" style="font-size: 20px" value="Go to the quiz"/>
         </form>
+        <button style="font-size: 20px; margin: 6%;" onclick="window.alert(help1)">Quiz Rules</button>
         <h2 style="font-family: 'Trebuchet MS'; color: cornflowerblue" id="Region">No region is pointed. </h2>
-        <p style="font-family: 'Trebuchet MS'">Click on to the region for general information.</p>
-        <p id="Info" align='justify' style="font-family: 'Trebuchet MS'; color: firebrick; font-size: 120%"></p>
+        <p style="font-family: 'Trebuchet MS'">Click on to a region to show general information.</p>
+        <p id="Info" align='justify' style="font-family: 'Trebuchet MS'; margin-left: 12%; color: firebrick; font-size: 100%"></p>
 
     </div>
 </div>
 
 <map name="Regions">
-    <area shape="rect" coords="398,552,451,590" onmouseover="showRegion(1)" onclick="regionInfo(1)"
+    <area shape="rect" coords="398,552,451,590" onmouseover="onHover(1)" ; onmouseout="offHover();" onclick="regionInfo(1)"
           target="_blank" alt="1"/>
-    <area shape="rect" coords="314,496,412,671" onmouseover="showRegion(2)" onclick="regionInfo(2)" target="_blank"
+    <area shape="rect" coords="314,496,412,671" onmouseover="onHover(2)" ; onmouseout="offHover();" onclick="regionInfo(2)" target="_blank"
           alt="2"/>
-    <area shape="rect" coords="30,550,317,745" onmouseover="showRegion(3)" onclick="regionInfo(3)" target="_blank"
+    <area shape="rect" coords="30,550,317,745" onmouseover="onHover(3)" ; onmouseout="offHover();" onclick="regionInfo(3)" target="_blank"
           alt="3"/>
-    <area shape="circle" coords="267,445,65" onmouseover="showRegion(4)" onclick="regionInfo(4)" target="_blank"
+    <area shape="circle" coords="267,445,65" onmouseover="onHover(4)" ; onmouseout="offHover();" onclick="regionInfo(4)" target="_blank"
           alt="4"/>
-    <area shape="rect" coords="184,132,272,380" onmouseover="showRegion(5)" onclick="regionInfo(5)" target="_blank"
+    <area shape="rect" coords="184,132,272,380" onmouseover="onHover(5)" ; onmouseout="offHover();" onclick="regionInfo(5)" target="_blank"
           alt="5"/>
-    <area shape="rect" coords="246,31,330,189" onmouseover="showRegion(6)" onclick="regionInfo(6 )" target="_blank"
+    <area shape="rect" coords="246,31,330,189" onmouseover="onHover(6)" ; onmouseout="offHover();" onclick="regionInfo(6 )" target="_blank"
           alt="6"/>
-    <area shape="circle" coords="350,261,75" onmouseover="showRegion(7)" onclick="regionInfo(7)" target="_blank"
+    <area shape="circle" coords="350,261,75" onmouseover="onHover(7)" ; onmouseout="offHover();" onclick="regionInfo(7)" target="_blank"
           alt="7"/>
-    <area shape="rect" coords="316,326,459,444" onmouseover="showRegion(8)" onclick="regionInfo(8)" target="_blank"
+    <area shape="rect" coords="316,326,459,444" onmouseover="onHover(8)" ; onmouseout="offHover();" onclick="regionInfo(8)" target="_blank"
           alt="8"/>
-    <area shape="rect" coords="400,420,560,555" onmouseover="showRegion(9)" onclick="regionInfo(9)" target="_blank"
+    <area shape="rect" coords="400,420,560,555" onmouseover="onHover(9)" ; onmouseout="offHover();" onclick="regionInfo(9)" target="_blank"
           alt="9"/>
 
 </map>
