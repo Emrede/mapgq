@@ -11,7 +11,13 @@
         width: 400px;
         /*height: 100px;*/
         /*border: 3px solid #73AD21;*/
-    }</style>
+
+    }
+
+    table, th, td {
+        border: 1px solid black;
+    }
+    </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 
@@ -217,7 +223,7 @@
             updatePoints(true);
         }
         function wrongAnswer() {
-            document.getElementById("status").innerHTML = "Wrong";
+            document.getElementById("status").innerHTML = "Wrong answer! Think again.";
             document.getElementById("status").style.color = "red";
             updatePoints(false);
         }
@@ -486,12 +492,21 @@
     <div style="width: 50%; float:left">
         <img id="mapImg" src="imgs/regionsc.png" usemap="#Regions"/> <!--585 x 800 map-->
     </div>
+
     <div class=absolute align="center" style="width: 50%; float:right">
-        <div>Time Left: <span id="time"></span> sec</div>
-        <h2 id="questionCount"></h2>
-        <h3 id="points"></h3>
+        <table style="width:100%">
+            <tr>
+                <th>Time Left: <span id="time"></span> sec</th>
+                <th><h4 id="points">Score: 0</h4></th>
+            </tr>
+            <tr>
+                <th><h2 id="questionCount"></h2></th>
+                <th><h3 id="question"></h3></th>
+        </table>
+
+
         <!--<div id="elapsed"></div>-->
-        <h2 id="question"></h2>
+
         <h2 id="Region" style="color: cornflowerblue;"></h2>
         <h1 id="status"></h1>
 
